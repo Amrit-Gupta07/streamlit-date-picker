@@ -89,11 +89,15 @@ export class DateRangePicker extends StreamlitComponentBase<State> {
     }
 
     private _button_on_click = (refreshValue: number) => {
-        this.setState({
-            start: dayjs().subtract(refreshValue, 'seconds'),
-            end: dayjs()
-        });
-        this.setComponentValue();
+        this.setState(
+            {
+                start: dayjs().subtract(refreshValue, 'seconds'),
+                end: dayjs()
+            },
+            () => {
+                this.setComponentValue();
+            }
+        );
     }
 
     private _onChange = (date: any, dateString: any) => {
